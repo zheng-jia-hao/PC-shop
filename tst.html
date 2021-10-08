@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			function getMost(arr) {
+				let max = null //出现次数最多的元素
+				let num = 1 //该元素出现次数
+				arr.reduce((p, k) => {
+					//对该数组进行reduce遍历
+					p[k] ? p[k]++ : (p[k] = 1) //k代表当前正在遍历的元素。应用到p[k]里，k表示p对象里的一个键，p[k]表示该键对应的值。不懂的话用如下图对象测一下就懂了
+					if (p[k] > num) {
+						//p[k]的值是不是大于之前的值 ，如果大于就将这个值放进max和num中进行下一次的判断
+						num = p[k]
+						max = k
+					}
+					return p //最后返回一个对象
+				}, {})
+				return { max: max, num: num }
+			}
+			let arr = [2, 3, 4, 5, "a", 2, 3, 2, "a", "d", "b"]
+			// let res = getMost(arr)
+
+			function max(text) {
+				const o = [...text].reduce((obj, next) => {
+					obj[next] = (obj[next] || 0) + 1
+					return obj
+				}, {})
+
+				const s = Object.keys(o)
+					.sort((p, n) => o[n] - o[p])
+					.shift()
+				console.log(s)
+			}
+
+			// let a = max("axavdvsknaksfih123123")
+
+			function f1() {
+				var arr = []
+				for (let i = 0; i < 10; i++) {
+					arr.push(function() {
+						return i
+					})
+				}
+				return arr
+			}
+
+			console.log(f1()[3]())
+		</script>
+	</body>
+</html>
